@@ -14,8 +14,11 @@ def prepare_response(msg: str, chat_id: int):
         try:
             f = weasyprint.HTML(msg).write_pdf()
         except weasyprint.urls.URLFetchingError:
+            send_text(chat_id, "Can't open this link")
             return 0
         return f
+    else:
+        bot.send_message(chat_id, "Incorrect link!")
 
 
 def send_response(chat_id, msg):
