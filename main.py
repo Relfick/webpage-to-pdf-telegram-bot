@@ -1,6 +1,7 @@
 import telebot
 import weasyprint
 import validators
+import time
 
 
 bot = telebot.TeleBot('HIDDEN_TOKEN')  # stored locally
@@ -40,11 +41,15 @@ def send_document(chat_id: int, f: bytes):
 def get_text_message(message: telebot.types.Message):
     msg_text = message.text
     chat_id = message.chat.id
+    tic = time.perf_counter()
 
     response = prepare_response(msg_text, chat_id)
 
     if response:
+        toc = time.perf_counter()
+        total_time_str = f"Time: {toc - tic:0.4f} sec"
         send_response(chat_id, response)
+        send_response(chat_id, total_time_str)
 
 
 bot.polling(none_stop=True, interval=0, skip_pending=True)
