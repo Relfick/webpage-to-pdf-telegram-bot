@@ -1,14 +1,20 @@
 import telebot
 import weasyprint
+import validators
 
-bot = telebot.TeleBot('HIDDEN_TOKEN')   # stored locally
+
+bot = telebot.TeleBot('HIDDEN_TOKEN')  # stored locally
+
 
 def prepare_response(msg: str, chat_id: int):
     if msg == '/start':
         return "Hello! Send link starting with http or https"
-    else:
-        bot.send_message(chat_id, "Wait...")
-        f = weasyprint.HTML(msg).write_pdf()
+    elif validators.url(msg):
+        send_text(chat_id, "Wait...")
+        try:
+            f = weasyprint.HTML(msg).write_pdf()
+        except weasyprint.urls.URLFetchingError:
+            return 0
         return f
 
 
@@ -34,7 +40,8 @@ def get_text_message(message: telebot.types.Message):
 
     response = prepare_response(msg_text, chat_id)
 
-    send_response(chat_id, response)
+    if response:
+        send_response(chat_id, response)
 
 
 bot.polling(none_stop=True, interval=0, skip_pending=True)
