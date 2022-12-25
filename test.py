@@ -1,17 +1,17 @@
-import main
+from main import get_file_name, prepare_response
+
 
 test_url = "http://help.websiteos.com/websiteos/example_of_a_simple_html_page.htm"
 test_chat_id = 111
 
 def test_get_file_name():
-    # answer = 'help_websiteos_com_websiteos_example_of_a_simple_html_page_htm.pdf'
     answer = 'help.websiteos.com_websiteos_example_of_a_simple_html_page.htm.pdf'
     test_url_2 = test_url + '/'
     test_url_3 = test_url[:7] + 'www.' + test_url[7:]
 
-    assert main.get_file_name(test_url) == answer
-    assert main.get_file_name(test_url_2) == answer
-    assert main.get_file_name(test_url_3) == answer
+    assert get_file_name(test_url) == answer
+    assert get_file_name(test_url_2) == answer
+    assert get_file_name(test_url_3) == answer
 
 
 def test_prepare_response():
@@ -25,7 +25,7 @@ def test_prepare_response():
     input4 = "hello"
     answer4 = "Incorrect link!"
 
-    assert type(main.prepare_response(input1)) is bytes
-    assert main.prepare_response(input2) == answer2
-    assert main.prepare_response(input3) == answer3
-    assert main.prepare_response(input4) == answer4
+    assert type(prepare_response(input1)) is bytes
+    assert prepare_response(input2) == answer2
+    assert prepare_response(input3) == answer3
+    assert prepare_response(input4) == answer4
