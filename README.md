@@ -1,5 +1,11 @@
 # webpage-to-pdf-telegram-bot
 Telegram-bot for converting webpage urls to PDF.
+# Tests
+`master`:
+[![Tests](https://github.com/Relfick/webpage-to-pdf-telegram-bot/actions/workflows/test-pipeline.yml/badge.svg?branch=master)](https://github.com/Relfick/webpage-to-pdf-telegram-bot/actions/workflows/test-pipeline.yml)
+
+`develop`:
+[![Tests](https://github.com/Relfick/webpage-to-pdf-telegram-bot/actions/workflows/test-pipeline.yml/badge.svg?branch=develop)](https://github.com/Relfick/webpage-to-pdf-telegram-bot/actions/workflows/test-pipeline.yml)
 # Run
 #### 1. Clone repo
 ```
